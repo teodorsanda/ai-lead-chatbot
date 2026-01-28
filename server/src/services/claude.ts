@@ -111,7 +111,7 @@ export async function qualifyLead(
 ): Promise<QualificationResponse> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-4-turbo',
+      model: 'gpt-5.2',
       temperature: 0.7,
       max_tokens: 1024,
       messages: [
@@ -145,7 +145,7 @@ export async function generateFollowUp(
   const conversationSummary = JSON.stringify(qualificationData, null, 2);
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4-turbo',
+    model: 'gpt-5.2',
     max_tokens: 512,
     messages: [
       {
