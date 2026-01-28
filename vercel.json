@@ -1,5 +1,6 @@
 {
-  "buildCommand": "cd client && npm install --legacy-peer-deps && CI=true npm run build",
+  "buildCommand": "cd client && CI=true npm run build",
+  "installCommand": "cd client && npm install --legacy-peer-deps",
   "framework": "create-react-app",
   "outputDirectory": "client/build"
 }
