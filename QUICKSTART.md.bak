@@ -1,0 +1,177 @@
+# Getting Started - AI Lead Qualification Chatbot
+
+## Quick Setup (5 minutes)
+
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL 13+
+- Redis 6+
+- Claude API Key (get from [Anthropic](https://console.anthropic.com))
+
+### Automated Setup (Recommended)
+
+**macOS/Linux:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+**Windows:**
+```bash
+setup.bat
+```
+
+### Manual Setup
+
+**1. Server Configuration**
+```bash
+cd server
+cp .env.example .env
+
+# Edit .env file:
+# - Add your ANTHROPIC_API_KEY
+# - Set DATABASE_URL if different from default
+# - Set REDIS_URL if Redis is on different port
+```
+
+**2. Install Dependencies**
+```bash
+cd server
+npm install
+
+cd ../client  
+npm install
+```
+
+**3. Start Services**
+
+In Terminal 1 - Backend:
+```bash
+cd server
+npm run dev:watch
+```
+
+In Terminal 2 - Frontend:
+```bash
+cd client
+npm run dev
+```
+
+### Verify Installation
+
+1. ✅ Backend running: `http://localhost:3001/health` should return `{ status: "healthy" }`
+2. ✅ Frontend running: `http://localhost:3000` loads the chat interface
+3. ✅ Database connected: Check server logs for "✓ Database connected"
+4. ✅ Redis connected: Check server logs for "✓ Redis connected"
+
+## First Time Usage
+
+### Step 1: Start a Chat
+1. Go to http://localhost:3000
+2. Enter your email, name, and company
+3. Click "Start Chat"
+
+### Step 2: Have a Conversation
+- Type messages to interact with the AI qualification bot
+- Watch the qualification score update in real-time
+- See 5 scoring factors: Budget, Timeline, Need, Engagement, Authority
+
+### Step 3: Check Dashboard
+- Click "Dashboard" tab to see all leads
+- View qualification metrics
+- Filter by qualified status
+- Track conversion rates
+
+### Step 4: Manage Fine-Tuning
+- Click "Fine-Tuning" tab
+- See collected conversation data
+- Export as JSONL for model retraining
+- Track qualification outcomes
+
+## Database Setup
+
+The database is automatically initialized on first server run. Tables created:
+- `leads` - Lead information and scores
+- `conversations` - Chat sessions
+- `messages` - Individual messages
+- `lead_scoring_history` - Score changes over time
+- `fine_tuning_data` - ML training data
+
+To reset database:
+```bash
+# Drop and recreate
+dropdb lead_qualification_db
+createdb lead_qualification_db
+
+# Restart server - tables will be created automatically
+```
+
+## Troubleshooting
+
+### "Cannot find module 'express'"
+```bash
+cd server
+npm install
+npm run build
+```
+
+### "Connection refused" on database
+```bash
+# Check PostgreSQL is running
+psql -U postgres
+
+# Verify connection string in server/.env
+```
+
+### "Connection refused" on Redis
+```bash
+# Start Redis
+redis-server
+
+# Or verify connection URL in server/.env
+```
+
+### "Invalid API Key" error
+- Verify ANTHROPIC_API_KEY in server/.env
+- Get key from https://console.anthropic.com/account/keys
+- Restart server after changing
+
+### Frontend shows blank page
+- Check browser console for errors (F12)
+- Verify backend is running on port 3001
+- Check REACT_APP_API_URL in client/.env
+
+## Environment Variables
+
+### Server (.env)
+```
+ANTHROPIC_API_KEY=sk-ant-...          # Required
+DATABASE_URL=postgresql://...         # PostgreSQL connection
+REDIS_URL=redis://localhost:6379      # Redis connection
+PORT=3001                             # API port
+NODE_ENV=development                  # Environment
+FRONTEND_URL=http://localhost:3000    # CORS origin
+```
+
+### Client (.env)
+```
+REACT_APP_API_URL=http://localhost:3001/api
+```
+
+## Next Steps
+
+1. **Customize Qualification**: Edit `server/src/services/claude.ts` SYSTEM_PROMPT
+2. **Add Authentication**: Implement user login in frontend
+3. **Deploy**: Use Docker/Heroku/AWS for production
+4. **Fine-tune Model**: Export data and train custom Claude model
+5. **Add Features**: Email notifications, analytics, etc.
+
+## Support
+
+- Check [README.md](../README.md) for complete documentation
+- Review [CHANGELOG.md](../CHANGELOG.md) for version history
+- See `.github/copilot-instructions.md` for development guidelines
+
+---
+
+**Ready to go!** 🚀 Open http://localhost:3000 and start qualifying leads with AI!

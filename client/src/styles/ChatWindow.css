@@ -1,0 +1,252 @@
+.chat-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+  padding: 2rem 0;
+}
+
+.chat-window {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  display: flex;
+  gap: 8px;
+  animation: slideIn 0.3s ease-out;
+
+  &.user {
+    justify-content: flex-end;
+
+    .message-content {
+      background-color: #667eea;
+      color: white;
+      border-radius: 12px 12px 0 12px;
+    }
+  }
+
+  &.assistant {
+    justify-content: flex-start;
+
+    .message-content {
+      background-color: #e5e7eb;
+      color: #1f2937;
+      border-radius: 12px 12px 12px 0;
+    }
+  }
+
+  .message-content {
+    padding: 12px 16px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.5;
+  }
+
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.setup-form {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.qualification-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+.score-bar {
+  margin-bottom: 1rem;
+
+  .score-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #374151;
+  }
+
+  .score-fill {
+    height: 8px;
+    background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+}
+
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.factor {
+  text-align: center;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+
+  .factor-label {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+  }
+
+  .factor-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #667eea;
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+
+  &.status-active {
+    background-color: #dbeafe;
+    color: #0c4a6e;
+  }
+
+  &.status-completed {
+    background-color: #dcfce7;
+    color: #15803d;
+  }
+
+  &.status-rejected {
+    background-color: #fee2e2;
+    color: #7f1d1d;
+  }
+}
+
+.chat-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+
+  form {
+    display: flex;
+    gap: 12px;
+
+    input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #667eea;
+      color: white;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover:not(:disabled) {
+        background-color: #5568d3;
+      }
+
+      &:disabled {
+        background-color: #d1d5db;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
