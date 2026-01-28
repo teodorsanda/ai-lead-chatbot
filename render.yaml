@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: ai-lead-chatbot-api
+    env: node
+    region: oregon
+    plan: free
+    
+    # Source
+    repo: https://github.com/teodorsanda/ai-lead-chatbot
+    branch: main
+    rootDir: server
+    
+    # Build
+    buildCommand: npm install
+    startCommand: npm run dev
+    
+    # Environment variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: OPENAI_API_KEY
+        scope: build,runtime
+      - key: DATABASE_URL
+        scope: build,runtime
+      - key: SUPABASE_URL
+        scope: build,runtime
+      - key: SUPABASE_ANON_KEY
+        scope: build,runtime
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        scope: build,runtime
+    
+    # Health check
+    healthCheckPath: /health
+    
+    # Auto-deploy on push
+    autoDeploy: true
