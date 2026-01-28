@@ -1,17 +1,5 @@
 {
   "buildCommand": "npm install --legacy-peer-deps && npm run build",
-  "env": {
-    "REACT_APP_API_URL": "@api-url"
-  },
   "framework": "create-react-app",
-  "outputDirectory": "build",
-  "regions": ["iad1"],
-  "rootDirectory": "client",
-  "github": {
-    "enabled": true,
-    "autoAlignProjectSettings": true,
-    "autoCommentCommits": true,
-    "autoDeployOnPush": true,
-    "silent": false
-  }
+  "outputDirectory": "build"
 }
