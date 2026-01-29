@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { leadsAPI, qualificationAPI } from '../services/api';
+import { leadsAPI } from '../services/api';
 import { Lead } from '../types';
 import { TrendingUp, Users, CheckCircle, XCircle } from 'lucide-react';
 import '../styles/Dashboard.css';
@@ -9,10 +9,6 @@ export const Dashboard: React.FC = () => {
   const [metrics, setMetrics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'qualified'>('all');
-
-  useEffect(() => {
-    loadData();
-  }, [filter]);
 
   const loadData = async () => {
     try {
@@ -26,6 +22,11 @@ export const Dashboard: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
