@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Message as MessageType, Lead, ScoringFactors } from '../types';
+import { Message as MessageType, ScoringFactors } from '../types';
 import { MessageCircle, Send, Loader } from 'lucide-react';
 import '../styles/ChatWindow.css';
 
@@ -60,44 +60,45 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     <div className="chat-window">
       <div className="chat-header">
         <MessageCircle size={24} />
-        <h2>Lead Qualification Chatbot</h2>
+        <h2>PikaBot 🌊</h2>
       </div>
 
       <div className="chat-body">
         {showSetup ? (
           <form onSubmit={handleSetupSubmit} className="setup-form">
-            <h3>Start Your Consultation</h3>
+            <h3>🌊 Bine ai venit la Pikasea!</h3>
+            <p className="setup-subtitle">Planifică-ți vacanța pe mare cu PikaBot</p>
             <div className="form-group">
               <label>Email *</label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="your@email.com"
+                placeholder="email@exemplu.ro"
                 required
               />
             </div>
             <div className="form-group">
-              <label>Name *</label>
+              <label>Nume *</label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Your Name"
+                placeholder="Numele tău"
                 required
               />
             </div>
             <div className="form-group">
-              <label>Company</label>
+              <label>Telefon (opțional)</label>
               <input
                 type="text"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                placeholder="Your Company (optional)"
+                placeholder="+40 7XX XXX XXX"
               />
             </div>
             <button type="submit" className="btn-primary">
-              Start Chat
+              Începe conversația ⛵
             </button>
           </form>
         ) : (
@@ -164,7 +165,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Type your message..."
+              placeholder="Scrie mesajul tău..."
               disabled={loading}
             />
             <button type="submit" disabled={loading || !inputValue.trim()}>

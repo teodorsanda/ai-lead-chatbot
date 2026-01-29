@@ -30,6 +30,10 @@ services:
         scope: build,runtime
       - key: SUPABASE_SERVICE_ROLE_KEY
         scope: build,runtime
+      - key: REDIS_URL
+        scope: build,runtime
+      - key: FRONTEND_URL
+        scope: build,runtime
     
     # Health check
     healthCheckPath: /health

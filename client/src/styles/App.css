@@ -6,7 +6,7 @@
 }
 
 .navbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
 
     &.active {
       background-color: white;
-      color: #667eea;
+      color: #0284c7;
     }
   }
 }

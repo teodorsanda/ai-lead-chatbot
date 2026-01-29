@@ -10,10 +10,6 @@ export const FineTuningPage: React.FC = () => {
   const [exporting, setExporting] = useState(false);
   const [selectedOutcome, setSelectedOutcome] = useState<string | undefined>(undefined);
 
-  useEffect(() => {
-    loadData();
-  }, [selectedOutcome]);
-
   const loadData = async () => {
     try {
       setLoading(true);
@@ -29,6 +25,11 @@ export const FineTuningPage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedOutcome]);
 
   const handleExport = async () => {
     try {

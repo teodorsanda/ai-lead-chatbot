@@ -19,7 +19,7 @@
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #764ba2 100%);
   color: white;
   padding: 1.5rem;
   display: flex;
@@ -50,7 +50,7 @@
     justify-content: flex-end;
 
     .message-content {
-      background-color: #667eea;
+      background-color: #0284c7;
       color: white;
       border-radius: 12px 12px 0 12px;
     }
@@ -99,7 +99,7 @@
 }
 
 .setup-form {
-  background: linear-gradient(135deg, #f0f4ff 0%, #f8f5ff 100%);
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
   padding: 2rem;
   border-radius: 12px;
   display: flex;
@@ -107,9 +107,17 @@
   gap: 1.5rem;
 
   h3 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    color: #1f2937;
+    color: #0c4a6e;
+    margin-bottom: 0;
+  }
+
+  .setup-subtitle {
+    font-size: 14px;
+    color: #0369a1;
+    margin-top: -1rem;
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -177,7 +185,7 @@
   .factor-value {
     font-size: 16px;
     font-weight: 600;
-    color: #667eea;
+    color: #0284c7;
   }
 }
 
@@ -223,14 +231,14 @@
 
       &:focus {
         outline: none;
-        border-color: #667eea;
+        border-color: #0284c7;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       }
     }
 
     button {
       padding: 12px 20px;
-      background-color: #667eea;
+      background-color: #0284c7;
       color: white;
       border-radius: 8px;
       font-weight: 500;
