@@ -34,20 +34,28 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Initialize services
+// Initialize services (non-blocking - server starts even if services fail)
 async function initializeServices() {
+  // Database
   try {
     console.log('Initializing database...');
     await initializeDatabase();
-    
+    console.log('✓ Database connected');
+  } catch (error) {
+    console.error('✗ Database initialization failed:', error);
+    console.log('⚠ Server will continue without database - some features may not work');
+  }
+
+  // Redis (already has fallback to in-memory)
+  try {
     console.log('Initializing Redis...');
     await initializeRedis();
-    
-    console.log('All services initialized successfully');
   } catch (error) {
-    console.error('Failed to initialize services:', error);
-    process.exit(1);
+    console.error('✗ Redis initialization failed:', error);
+    console.log('⚠ Using in-memory session storage');
   }
+
+  console.log('Service initialization complete');
 }
 
 // Routes
@@ -70,11 +78,11 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
   });
 });
 
-// Start server
-initializeServices().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  });
+// Start server first, then initialize services
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+  // Initialize services after server is listening
+  initializeServices();
 });
 
 export default app;
